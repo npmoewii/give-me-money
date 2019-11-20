@@ -1,0 +1,10 @@
+FROM mysql:latest
+
+ENV MYSQL_ROOT_PASSWORD 1234
+
+COPY gmm_user.sql /docker-entrypoint-initdb.d
+COPY gmm_debt.sql /docker-entrypoint-initdb.d
+COPY gmm_transaction.sql /docker-entrypoint-initdb.d
+
+# Add mock data
+COPY mock_data.sql /docker-entrypoint-initdb.d
