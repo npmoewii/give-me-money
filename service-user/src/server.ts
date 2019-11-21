@@ -1,19 +1,20 @@
+import cors from '@koa/cors';
 import Koa from 'koa';
-import Router from 'koa-router';
 import bodyParser from 'koa-body';
+import { createConnection } from "typeorm";
+import { dbConfig, serverPort } from "./config";
+
+import router from './routes'
 
 const app = new Koa();
-const router = new Router();
 
-app.use(bodyParser({ multipart: true }));
+(async () => {
+    await createConnection(dbConfig);
+    app.use(cors())
+    app.use(bodyParser({ multipart: true }));
+    app.use(router.routes())
 
-
-router.get('/*', async (ctx: Koa.Context) => {
-    ctx.body = 'Hello World';
-});
-
-app.use(router.routes())
-
-app.listen(5000, () => {
-    console.log('Server running on port 5000');
-});
+    app.listen(serverPort, () => {
+        console.log('Server running on port ' + serverPort);
+    });
+})
