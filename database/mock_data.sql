@@ -1,3 +1,5 @@
+SET NAMES utf8mb4;
+
 USE `gmm_user`;
 START TRANSACTION;
 INSERT INTO `user`(`username`, `display_name`, `key`) VALUES ("pawin", "Pawin Piemthai", "pawin"), ("pisit", "Pisit Wajanasar'a", "pisit"), ("punnisa", "Punnisa Jitwirot", "punnisa"), ("natchaporn", "Natchaporn Ponkitsaran", "natchaporn");
