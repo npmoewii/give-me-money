@@ -8,14 +8,14 @@ SET time_zone = "+00:00";
 CREATE DATABASE IF NOT EXISTS `gmm_debt` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE `gmm_debt`;
 
-CREATE TABLE `debt` (
+CREATE TABLE IF NOT EXISTS `debt` (
   `id` int AUTO_INCREMENT PRIMARY KEY,
   `username_creditor` varchar(20) COLLATE utf8mb4_unicode_ci,
   `username_debtor` varchar(20) COLLATE utf8mb4_unicode_ci,
   `name` varchar(100) COLLATE utf8mb4_unicode_ci,
   `cost` double,
   `created_datetime` TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
-);
+) DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_unicode_ci;
 
 COMMIT;
 

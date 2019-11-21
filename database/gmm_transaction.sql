@@ -8,13 +8,13 @@ SET time_zone = "+00:00";
 CREATE DATABASE IF NOT EXISTS `gmm_transaction` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE `gmm_transaction`;
 
-CREATE TABLE `transaction` (
+CREATE TABLE IF NOT EXISTS `transaction` (
   `id` int AUTO_INCREMENT PRIMARY KEY,
   `username_from` varchar(20) COLLATE utf8mb4_unicode_ci,
   `username_to` varchar(20) COLLATE utf8mb4_unicode_ci,
   `money` double,
   `created_datetime` TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
-);
+) DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_unicode_ci;
 
 COMMIT;
 
