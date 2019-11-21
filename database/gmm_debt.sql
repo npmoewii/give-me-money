@@ -8,7 +8,7 @@ SET time_zone = "+00:00";
 CREATE DATABASE IF NOT EXISTS `gmm_debt` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE `gmm_debt`;
 
-CREATE TABLE `debt` (
+CREATE TABLE IF NOT EXISTS `debt` (
   `id` int AUTO_INCREMENT PRIMARY KEY,
   `username_creditor` varchar(20) COLLATE utf8mb4_unicode_ci,
   `username_debtor` varchar(20) COLLATE utf8mb4_unicode_ci,
@@ -21,7 +21,7 @@ COMMIT;
 
 START TRANSACTION;
 DROP USER IF EXISTS 'gmm_debt'@'%';
-CREATE USER 'gmm_debt'@'%' IDENTIFIED WITH mysql_native_password BY 'gmm_debt_password';
+CREATE USER 'gmm_debt'@'%' IDENTIFIED BY 'gmm_debt_password';
 GRANT ALL PRIVILEGES ON `gmm_debt`.* TO 'gmm_debt'@'%';
 FLUSH PRIVILEGES;
 COMMIT;
