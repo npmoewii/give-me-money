@@ -15,13 +15,13 @@ CREATE TABLE `debt` (
   `name` varchar(100) COLLATE utf8mb4_unicode_ci,
   `cost` double,
   `created_datetime` TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
-);
+) DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_unicode_ci;
 
 COMMIT;
 
 START TRANSACTION;
 DROP USER IF EXISTS 'gmm_debt'@'%';
-CREATE USER 'gmm_debt'@'%' IDENTIFIED BY 'gmm_debt_password';
+CREATE USER 'gmm_debt'@'%' IDENTIFIED WITH mysql_native_password BY 'gmm_debt_password';
 GRANT ALL PRIVILEGES ON `gmm_debt`.* TO 'gmm_debt'@'%';
 FLUSH PRIVILEGES;
 COMMIT;

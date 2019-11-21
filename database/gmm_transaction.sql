@@ -14,13 +14,13 @@ CREATE TABLE `transaction` (
   `username_to` varchar(20) COLLATE utf8mb4_unicode_ci,
   `money` double,
   `created_datetime` TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
-);
+) DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_unicode_ci;
 
 COMMIT;
 
 START TRANSACTION;
 DROP USER IF EXISTS 'gmm_transaction'@'%';
-CREATE USER 'gmm_transaction'@'%' IDENTIFIED BY 'gmm_transaction_password';
+CREATE USER 'gmm_transaction'@'%' IDENTIFIED WITH mysql_native_password BY 'gmm_transaction_password';
 GRANT ALL PRIVILEGES ON `gmm_transaction`.* TO 'gmm_transaction'@'%';
 FLUSH PRIVILEGES;
 COMMIT;

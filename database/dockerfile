@@ -8,3 +8,5 @@ COPY gmm_transaction.sql /docker-entrypoint-initdb.d
 
 # Add mock data
 COPY mock_data.sql /docker-entrypoint-initdb.d
+
+RUN mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
