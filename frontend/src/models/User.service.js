@@ -1,8 +1,20 @@
-import api from './api'
+// import api from './api'
+import axios from 'axios'
+
+const userAPI = axios.create({
+  baseURL: 'http://localhost:5000/',
+    withCredentials: false,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE"
+    }
+})
 
 class User {
-  static getUser() {
-    return []
+  static async getUser() {
+    const res = await userAPI.get('all')
+    const users = res.data
+    return users
   }
 }
 

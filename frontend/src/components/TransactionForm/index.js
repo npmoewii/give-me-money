@@ -1,5 +1,6 @@
 import React from 'react'
 import { Form, Input, Button } from 'antd'
+import UserSelect from '../UserSelect'
 
 class TransactionForm extends React.Component {
   constructor(props) {
@@ -23,10 +24,10 @@ class TransactionForm extends React.Component {
     return (
         <Form layout="inline">
         <Form.Item label="From">
-          <Input name='username_from' onChange={this.handleChange} />
+          <UserSelect name='username_from' onChange={this.handleChange} />
         </Form.Item>
         <Form.Item label="To">
-          <Input name='username_to' onChange={this.handleChange} />
+          <UserSelect name='username_to' onChange={this.handleChange} />
         </Form.Item>
         <Form.Item label="Money">
           <Input name='money' onChange={this.handleChange} />

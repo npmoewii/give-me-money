@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, Input, Button } from 'antd';
 import styled from 'styled-components';
+import UserSelect from '../UserSelect';
 
 class DebtForm extends React.Component {
   constructor(props) {
@@ -23,10 +24,10 @@ class DebtForm extends React.Component {
             <Input name="name" onChange={this.handleChange} />
           </Form.Item>
           <Form.Item label="Creditor">
-            <Input name="username_creditor" onChange={this.handleChange} />
+            <UserSelect name='username_creditor' onChange={this.handleChange} />
           </Form.Item>
           <Form.Item label="Debtor">
-            <Input name="username_debtor" onChange={this.handleChange} />
+            <UserSelect name='username_debtor' onChange={this.handleChange} />
           </Form.Item>
           <Form.Item label="Cost">
             <Input name="cost" onChange={this.handleChange} />
