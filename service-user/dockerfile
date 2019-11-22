@@ -1,4 +1,5 @@
-FROM node:alpine
+# FROM node:alpine
+FROM arm32v7/node
 
 COPY . /app
 

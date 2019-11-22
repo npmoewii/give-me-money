@@ -1,4 +1,5 @@
-FROM mysql:latest
+# FROM mysql:latest
+FROM hypriot/rpi-mysql
 
 ENV MYSQL_ROOT_PASSWORD 1234
 
