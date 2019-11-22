@@ -7,19 +7,18 @@ def connectDB():
 
 
 
-def getAllDebt():
+def getAllTransaction():
 	db = connectDB()
 	c=db.cursor()
-	c.execute("select * from debt")
+	c.execute("select * from transaction")
 	a=c.fetchall()
 	res = []
-	for (id, fromID, toID, name, cost, time) in a:
+	for (id, fromID, toID, money, time) in a:
 		data = dict()
 		data["id"] = id
 		data["from"] = fromID
 		data["to"] = toID
-		data["name"] = name
-		data["cost"] = cost
+		data["money"] = money
 		data["time"] = str(time)
 		res.append(data)
 	return res
@@ -27,22 +26,21 @@ def getAllDebt():
 def getAllRelated(id):
 	db = connectDB()
 	c=db.cursor()
-	c.execute("select * from debt where debt.username_creditor = %s or debt.username_debtor = %s;", (id, id))
+	c.execute("select * from debt where transaction.username_from = %s or transaction.username_to = %s;", (id, id))
 	a=c.fetchall()
 	res = []
-	for (id, fromID, toID, name, cost, time) in a:
+	for (id, fromID, toID, money, time) in a:
 		data = dict()
 		data["id"] = id
 		data["from"] = fromID
 		data["to"] = toID
-		data["name"] = name
-		data["cost"] = cost
+		data["money"] = money
 		data["time"] = str(time)
 		res.append(data)
 	return res
 
-def addDebt(fromID, toID, name, cost):
+def addTransaction(fromID, toID, money):
 	db = connectDB()
 	c=db.cursor()
-	c.execute("insert into debt (username_creditor, username_debtor, name, cost) values (%s, %s, %s, %s)", (fromID, toID, name, cost))
+	c.execute("insert into transaction (username_from, username_to, money) values (%s, %s, %s)", (fromID, toID, money))
 	db.commit()
