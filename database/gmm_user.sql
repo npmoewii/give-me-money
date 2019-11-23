@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 COMMIT;
 
 START TRANSACTION;
-DROP USER IF EXISTS 'gmm_user'@'%';
+-- DROP USER IF EXISTS 'gmm_user'@'%';
 CREATE USER 'gmm_user'@'%' IDENTIFIED BY 'gmm_user_password';
 GRANT ALL PRIVILEGES ON `gmm_user`.* TO 'gmm_user'@'%';
 FLUSH PRIVILEGES;

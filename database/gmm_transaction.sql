@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS `transaction` (
 COMMIT;
 
 START TRANSACTION;
-DROP USER IF EXISTS 'gmm_transaction'@'%';
+-- DROP USER IF EXISTS 'gmm_transaction'@'%';
 CREATE USER 'gmm_transaction'@'%' IDENTIFIED BY 'gmm_transaction_password';
 GRANT ALL PRIVILEGES ON `gmm_transaction`.* TO 'gmm_transaction'@'%';
 FLUSH PRIVILEGES;
