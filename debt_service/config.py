@@ -3,10 +3,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-db_host = os.getenv("DB_HOST")
-db_port = int(os.getenv("DB_port"))
-db_username = os.getenv("DB_USERNAME")
-db_password = os.getenv("DB_PASSWORD")
-db_name = os.getenv("DB_NAME")
-port = os.getenv("DEBT_PORT", "3000")
+db_host = os.getenv("DB_HOST", "localhost")
+db_port = int(os.getenv("DB_port", "3306"))
+db_username = os.getenv("DB_USERNAME", "root")
+db_password = os.getenv("DB_PASSWORD", "")
+db_name = os.getenv("DB_NAME", "gmm_debt")
+port = os.getenv("DEBT_PORT", "7001")
 print("Load config")
