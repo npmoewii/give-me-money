@@ -1,10 +1,10 @@
-import MySQLdb
+import mysql.connector
 import config
 
 
 def connectDB():
-    db = MySQLdb.connect(host=config.db_host, port=config.db_port, user=config.db_username,
-                         passwd=config.db_password, db=config.db_name, charset="utf8mb4")
+    db = mysql.connector.connect(host=config.db_host, port=config.db_port, user=config.db_username,
+                                 passwd=config.db_password, db=config.db_name)
     return db
 
 

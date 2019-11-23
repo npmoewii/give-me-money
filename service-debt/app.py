@@ -17,13 +17,13 @@ def postCreate():
 
 @app.route("/list/all", methods=["get"])
 def getListAll():
-    data = json.dumps(db.getAllDebt())
+    data = json.dumps(db.getAllDebt(), ensure_ascii=False)
     return Response(data, status=200)
 
 
 @app.route("/list/<username>", methods=["get"])
 def getAllRelated(username):
-    data = json.dumps(db.getAllRelated(username))
+    data = json.dumps(db.getAllRelated(username), , ensure_ascii=False)
     return Response(data, status=200)
 
 
