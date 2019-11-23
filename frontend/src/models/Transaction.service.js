@@ -2,7 +2,7 @@
 import axios from 'axios'
 
 const transactionAPI = axios.create({
-    baseURL: 'http://localhost:5000/',
+    baseURL: 'http://localhost:7002/',
     withCredentials: false,
     headers: {
         "Access-Control-Allow-Origin": "*",

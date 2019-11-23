@@ -2,12 +2,12 @@
 import axios from 'axios'
 
 const userAPI = axios.create({
-  baseURL: 'http://localhost:5000/',
-    withCredentials: false,
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE"
-    }
+  baseURL: 'http://localhost:7000/',
+  withCredentials: false,
+  headers: {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE"
+  }
 })
 
 class User {
