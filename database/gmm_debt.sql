@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS `debt` (
 COMMIT;
 
 START TRANSACTION;
-DROP USER IF EXISTS 'gmm_debt'@'%';
+-- DROP USER IF EXISTS 'gmm_debt'@'%';
 CREATE USER 'gmm_debt'@'%' IDENTIFIED BY 'gmm_debt_password';
 GRANT ALL PRIVILEGES ON `gmm_debt`.* TO 'gmm_debt'@'%';
 FLUSH PRIVILEGES;
