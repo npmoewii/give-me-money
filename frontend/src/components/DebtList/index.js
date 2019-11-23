@@ -5,54 +5,53 @@ import DebtService from '../../models/Debt.service'
 
 const columns = [
   {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
+    title: 'ID',
+    dataIndex: 'id',
+    key: 'id',
     render: text => <a>{text}</a>,
   },
   {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
+    title: 'Creditor',
+    dataIndex: 'creditor',
+    key: 'creditor',
   },
   {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
-  },
-];
-
-const mockData = [
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
+    title: 'Debtor',
+    dataIndex: 'debtor',
+    key: 'debtor',
   },
   {
-    key: '2',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: ['loser'],
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
+    title: 'Name',
+    dataIndex: 'name',
+    key: 'name',
+  }, {
+    title: 'Cost',
+    dataIndex: 'cost',
+    key: 'cost'
+  }, {
+    title: 'Created time',
+    dataIndex: 'time',
+    key: 'time'
+  }
 ];
 
 class DebtList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      debtList: mockData,
-      username: this.props.username
+      debtList: [],
     };
+  }
+
+  componentDidMount() {
+    this.fetchInterval = setInterval(
+      () => this.fetchDebtList(),
+      1000
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.fetchInterval);
   }
 
   handleChange = e => {
@@ -63,15 +62,23 @@ class DebtList extends React.Component {
   };
 
   fetchDebtList = async () => {
-    const debtList = await DebtService.getList(this.state.username)
-    this.setState({
-      debtList
-    })
+    if (this.props.username) {
+      const debtList = await DebtService.getList(this.props.username)
+      console.log(debtList)
+      this.setState({
+        debtList
+      })
+    }
   }
 
   render() {
     const { debtList } = this.state
-    return <Table columns={columns} dataSource={debtList} />;
+    return (
+      <div>
+        <h2>Related debt list</h2>
+        <Table columns={columns} dataSource={debtList} />
+      </div>
+    )
   }
 }
 

@@ -14,11 +14,11 @@ def getAllDebt():
     c.execute("select * from debt")
     a = c.fetchall()
     res = []
-    for (id, fromID, toID, name, cost, time) in a:
+    for (id, creditorID, debtorID, name, cost, time) in a:
         data = dict()
         data["id"] = id
-        data["from"] = fromID
-        data["to"] = toID
+        data["creditor"] = creditorID
+        data["debtor"] = debtorID
         data["name"] = name
         data["cost"] = cost
         data["time"] = str(time)
@@ -33,11 +33,11 @@ def getAllRelated(id):
         "select * from debt where debt.username_creditor = %s or debt.username_debtor = %s;", (id, id))
     a = c.fetchall()
     res = []
-    for (id, fromID, toID, name, cost, time) in a:
+    for (id, creditorID, debtorID, name, cost, time) in a:
         data = dict()
         data["id"] = id
-        data["from"] = fromID
-        data["to"] = toID
+        data["creditor"] = creditorID
+        data["debtor"] = debtorID
         data["name"] = name
         data["cost"] = cost
         data["time"] = str(time)

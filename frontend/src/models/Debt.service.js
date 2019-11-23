@@ -34,10 +34,10 @@ class Debt {
         let debtList = []
         try {
             let res
-            if (username) {
-                res = await debtAPI.get('list/' + username)
-            } else {
+            if (!username) {
                 res = await debtAPI.get('list/all')
+            } else {
+                res = await debtAPI.get('list/' + username)
             }
             debtList = res.data
         } catch (e) {
