@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gmm-frontend-deployment
+  labels:
+    app: gmm-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gmm-frontend
+  template:
+    metadata:
+      labels:
+        app: gmm-frontend
+    spec:
+      containers:
+      - name: nginx
+        image: npmoewii/gmm-frontend
+        ports:
+        - containerPort: 80
