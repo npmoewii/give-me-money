@@ -1,10 +1,12 @@
 from flask import Flask, request, Response
+from flask_cors import CORS
 import config
 import db
 import json
 
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route("/create", methods=["post"])
@@ -23,7 +25,7 @@ def getListAll():
 
 @app.route("/list/<username>", methods=["get"])
 def getAllRelated(username):
-    data = json.dumps(db.getAllRelated(username), , ensure_ascii=False)
+    data = json.dumps(db.getAllRelated(username), ensure_ascii=False)
     return Response(data, status=200)
 
 
