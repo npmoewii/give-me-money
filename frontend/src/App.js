@@ -27,7 +27,7 @@ class App extends React.Component {
         <UserForm updateGlobalState={this.updateGlobalState} />
         <DebtForm />
         <Transaction />
-        { this.state.username !== ''&& <DebtList />}
+        {this.state.username !== '' && <DebtList username={this.state.username} />}
       </div>
     )
 

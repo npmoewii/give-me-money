@@ -1,11 +1,18 @@
 import React from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, message as Message } from 'antd';
 import UserSelect from '../UserSelect';
+
+import DebtService from '../../models/Debt.service'
 
 class DebtForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      name: '',
+      username_creditor: '',
+      username_debtor: '',
+      cost: '',
+    };
   }
 
   handleChange = e => {
@@ -14,6 +21,12 @@ class DebtForm extends React.Component {
       [e.target.name]: e.target.value,
     });
   };
+
+  handleSubmit = async () => {
+    const { name, username_creditor, username_debtor, cost } = this.state
+    const message = await DebtService.create(username_creditor, username_debtor, name, cost)
+    Message.info(message)
+  }
 
   render() {
     return (
@@ -29,7 +42,7 @@ class DebtForm extends React.Component {
             <UserSelect name='username_debtor' onChange={this.handleChange} />
           </Form.Item>
           <Form.Item label="Cost">
-            <Input name="cost" onChange={this.handleChange} />
+            <Input name="cost" onChange={this.handleChange} type='number' />
           </Form.Item>
           <Form.Item>
             <Button onClick={this.handleSubmit}>Submit</Button>

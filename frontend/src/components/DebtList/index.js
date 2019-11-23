@@ -1,6 +1,8 @@
 import React from 'react';
 import { Table } from 'antd';
 
+import DebtService from '../../models/Debt.service'
+
 const columns = [
   {
     title: 'Name',
@@ -20,7 +22,7 @@ const columns = [
   },
 ];
 
-const data = [
+const mockData = [
   {
     key: '1',
     name: 'John Brown',
@@ -47,7 +49,10 @@ const data = [
 class DebtList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      debtList: mockData,
+      username: this.props.username
+    };
   }
 
   handleChange = e => {
@@ -56,8 +61,17 @@ class DebtList extends React.Component {
       [e.target.name]: e.target.value,
     });
   };
+
+  fetchDebtList = async () => {
+    const debtList = await DebtService.getList(this.state.username)
+    this.setState({
+      debtList
+    })
+  }
+
   render() {
-    return <Table columns={columns} dataSource={data} />;
+    const { debtList } = this.state
+    return <Table columns={columns} dataSource={debtList} />;
   }
 }
 
