@@ -35,11 +35,12 @@ class UserSelect extends React.Component {
       <Select
         placeholder={this.props.placeholder || 'Select user...'}
         showSearch
-        style={{ width: 200 }} 
+        onChange={this.onChange}
+        style={{ width: 200 }}
       >
         {this.state.users.map(user => (
-          <Select.Option 
-            key={user.username} 
+          <Select.Option
+            key={user.username}
             value={user.username}
           >
             {user.display_name}

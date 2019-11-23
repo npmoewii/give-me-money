@@ -1,6 +1,5 @@
 import React from 'react';
 import { Form, Input, Button } from 'antd';
-import styled from 'styled-components';
 import UserSelect from '../UserSelect';
 
 class DebtForm extends React.Component {
