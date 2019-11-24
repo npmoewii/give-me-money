@@ -6,15 +6,18 @@ import requests
 import db
 import json
 
+
 def getUserMap():
-	db = mysql.connector.connect(host=config.db_host, port=config.db_port, user=config.db_username, password=config.db_password, db=config.db_name)
-	resp = requests.get(config.user_service+"/all")
-	users = json.loads(resp.content)
-	userMap = dict()
-	for user in users:
-		username = user["username"]
-		userMap[username] = user["display_name"]
-	return userMap
+    db = mysql.connector.connect(host=config.db_host, port=config.db_port,
+                                 user=config.db_username, password=config.db_password, db=config.db_name)
+    resp = requests.get(config.user_service+"/all")
+    users = json.loads(resp.content)
+    userMap = dict()
+    for user in users:
+        username = user["username"]
+        userMap[username] = user["display_name"]
+    return userMap
+
 
 app = Flask(__name__)
 CORS(app)
@@ -30,24 +33,32 @@ def postCreate():
 
 @app.route("/list/all", methods=["get"])
 def getListAll():
-	data = db.getAllDebt()
-	userMap = getUserMap()
-	for elm in data:
-		username = elm["creditor"]
-		elm["creditor"] = {"username":username, "display_name":userMap.get(username, "Null")}
-	data = json.dumps(data, ensure_ascii=False)
-	return Response(data, status=200)
+    data = db.getAllDebt()
+    userMap = getUserMap()
+    for elm in data:
+        username = elm["creditor"]
+        elm["creditor"] = {"username": username,
+                           "display_name": userMap.get(username, "null")}
+        username = elm["debtor"]
+        elm["debtor"] = {"username": username,
+                         "display_name": userMap.get(username, "null")}
+    data = json.dumps(data, ensure_ascii=False)
+    return Response(data, status=200)
 
 
 @app.route("/list/<username>", methods=["get"])
 def getAllRelated(username):
-	data = db.getAllRelated(username)
-	userMap = getUserMap()
-	for elm in data:
-		username = elm["creditor"]
-		elm["creditor"] = {"username":username, "display_name":userMap.get(username, "null")}
-	data = json.dumps(data, ensure_ascii=False)
-	return Response(data, status=200)
+    data = db.getAllRelated(username)
+    userMap = getUserMap()
+    for elm in data:
+        username = elm["creditor"]
+        elm["creditor"] = {"username": username,
+                           "display_name": userMap.get(username, "null")}
+        username = elm["debtor"]
+        elm["debtor"] = {"username": username,
+                         "display_name": userMap.get(username, "null")}
+    data = json.dumps(data, ensure_ascii=False)
+    return Response(data, status=200)
 
 
 if __name__ == '__main__':

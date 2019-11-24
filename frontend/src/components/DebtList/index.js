@@ -14,11 +14,13 @@ const columns = [
     title: 'Creditor',
     dataIndex: 'creditor',
     key: 'creditor',
+    render: creditor => <>{creditor['display_name'] || ''}</>,
   },
   {
     title: 'Debtor',
     dataIndex: 'debtor',
     key: 'debtor',
+    render: debtor => <>{debtor['display_name'] || ''}</>,
   },
   {
     title: 'Name',
