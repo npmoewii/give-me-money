@@ -2,7 +2,7 @@
 import axios from 'axios'
 
 const debtAPI = axios.create({
-    baseURL: process.env.REACT_APP_API_DEBT || 'http://localhost:7001/',
+    baseURL: window._env_.API_DEBT || 'http://localhost:7001/',
     withCredentials: false,
     headers: {
         "Access-Control-Allow-Origin": "*",

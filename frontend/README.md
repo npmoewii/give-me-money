@@ -1,3 +1,19 @@
+## Local
+Override env variable in .env
+```
+sudo API_USER=http://localhost:5000/ yarn start
+```
+
+## Docker 
+```
+docker run -itd \
+    -e API_USER='http://localhost:5000'
+    -e API_DEBT=''
+    -e API_TRANSACTION=''
+    -p 80:80
+    gmm_frontend
+```
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

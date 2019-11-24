@@ -2,7 +2,7 @@
 import axios from 'axios'
 
 const userAPI = axios.create({
-  baseURL: process.env.REACT_APP_API_USER || 'http://localhost:7000/',
+  baseURL: window._env_.API_USER || 'http://localhost:7000/',
   withCredentials: false,
   headers: {
     "Access-Control-Allow-Origin": "*",
