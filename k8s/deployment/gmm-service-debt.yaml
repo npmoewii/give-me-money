@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gmm-service-debt-deployment
+  labels:
+    app: gmm-service-debt
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gmm-service-debt
+  template:
+    metadata:
+      labels:
+        app: gmm-service-debt
+    spec:
+      containers:
+        - name: nginx
+          image: npmoewii/gmm-service-debt
+          ports:
+            - containerPort: 7001

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gmm-service-transaction-deployment
+  labels:
+    app: gmm-service-transaction
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gmm-service-transaction
+  template:
+    metadata:
+      labels:
+        app: gmm-service-transaction
+    spec:
+      containers:
+        - name: nginx
+          image: npmoewii/gmm-service-transaction
+          ports:
+            - containerPort: 7002

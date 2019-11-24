@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gmm-service-user-service
+spec:
+  type: NodePort
+  selector:
+    app: gmm-service-user
+  ports:
+    - protocol: TCP
+      port: 7000
+      nodePort: 31999
