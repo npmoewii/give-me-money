@@ -1,6 +1,6 @@
 ```
 docker run -itd --name gmm-service-debt \
-  -e DB_HOST=http://192.168.0.136 \
+  -e DB_HOST=192.168.0.136 \
   -e DB_PORT=3306 \
   -e DB_USERNAME=gmm_debt \
   -e DB_PASSWORD=gmm_debt_password \

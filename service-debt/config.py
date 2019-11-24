@@ -4,7 +4,7 @@ load_dotenv()
 
 
 db_host = os.getenv("DB_HOST", "localhost")
-db_port = int(os.getenv("DB_port", "3306"))
+db_port = int(os.getenv("DB_PORT", "3306"))
 db_username = os.getenv("DB_USERNAME", "root")
 db_password = os.getenv("DB_PASSWORD", "")
 db_name = os.getenv("DB_NAME", "gmm_debt")
