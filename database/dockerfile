@@ -10,6 +10,8 @@ ADD gmm_transaction.sql /docker-entrypoint-initdb.d/
 # Add mock data
 ADD mock_data.sql /docker-entrypoint-initdb.d/
 
+EXPOSE 3306
+
 RUN chmod -R +x /docker-entrypoint-initdb.d/
 
 # CMD ["mysqld", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]

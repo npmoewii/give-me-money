@@ -15,7 +15,7 @@ spec:
         app: gmm-service-debt
     spec:
       containers:
-        - name: nginx
+        - name: gmm-service-debt
           image: npmoewii/gmm-service-debt
           ports:
             - containerPort: 7001

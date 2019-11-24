@@ -15,7 +15,7 @@ spec:
         app: gmm-service-user
     spec:
       containers:
-        - name: nginx
+        - name: gmm-service-user
           image: npmoewii/gmm-service-user
           ports:
             - containerPort: 7000

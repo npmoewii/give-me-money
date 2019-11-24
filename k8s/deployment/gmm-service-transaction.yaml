@@ -15,7 +15,7 @@ spec:
         app: gmm-service-transaction
     spec:
       containers:
-        - name: nginx
+        - name: gmm-service-transaction
           image: npmoewii/gmm-service-transaction
           ports:
             - containerPort: 7002
