@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gmm-frontend-deployment
+  name: gmm-database-deployment
   labels:
-    app: gmm-frontend
+    app: gmm-database
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: gmm-frontend
+      app: gmm-database
   template:
     metadata:
       labels:
-        app: gmm-frontend
+        app: gmm-database
     spec:
       containers:
-        - name: gmm-frontend
-          image: npmoewii/gmm-frontend
+        - name: gmm-database
+          image: npmoewii/gmm-database
           ports:
             - containerPort: 80
