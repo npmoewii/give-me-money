@@ -7,11 +7,11 @@ sudo API_USER=http://localhost:5000/ yarn start
 ## Docker 
 ```
 docker run -itd \
-    -e API_USER='http://localhost:5000'
-    -e API_DEBT=''
-    -e API_TRANSACTION=''
-    -p 80:80
-    gmm_frontend
+    -e API_USER=http://localhost:7000 \
+    -e API_DEBT=http://localhost:7001 \
+    -e API_TRANSACTION=http://localhost:7002 \
+    -p 80:80 \
+    npmoewii/gmm-frontend
 ```
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
