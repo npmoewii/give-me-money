@@ -1,10 +1,20 @@
 from flask import Flask, request, Response
 from flask_cors import CORS
 import config
+import mysql.connector
 import requests
 import db
 import json
 
+def getUserMap():
+	db = mysql.connector.connect(host=config.db_host, port=config.db_port, user=config.db_username, password=config.db_password, db=config.db_name)
+	resp = requests.get(config.user_service+"/all")
+	users = json.loads(resp.content)
+	userMap = dict()
+	for user in users:
+		username = user["username"]
+		userMap[username] = user["display_name"]
+	return userMap
 
 app = Flask(__name__)
 CORS(app)
@@ -24,9 +34,9 @@ def getListAll():
 	userMap = getUserMap()
 	for elm in data:
 		username = elm["creditor"]
-		elm["creditor"] = {"username":username, "display_name":userMap[username]}
-    data = json.dumps(data, ensure_ascii=False)
-    return Response(data, status=200)
+		elm["creditor"] = {"username":username, "display_name":userMap.get(username, "Null")}
+	data = json.dumps(data, ensure_ascii=False)
+	return Response(data, status=200)
 
 
 @app.route("/list/<username>", methods=["get"])
@@ -35,9 +45,9 @@ def getAllRelated(username):
 	userMap = getUserMap()
 	for elm in data:
 		username = elm["creditor"]
-		elm["creditor"] = {"username":username, "display_name":userMap[username]}
-    data = json.dumps(data, ensure_ascii=False)
-    return Response(data, status=200)
+		elm["creditor"] = {"username":username, "display_name":userMap.get(username, "null")}
+	data = json.dumps(data, ensure_ascii=False)
+	return Response(data, status=200)
 
 
 if __name__ == '__main__':
