@@ -1,6 +1,7 @@
 from flask import Flask, request, Response
 from flask_cors import CORS
 import config
+import requests
 import db
 import json
 
@@ -19,13 +20,23 @@ def postCreate():
 
 @app.route("/list/all", methods=["get"])
 def getListAll():
-    data = json.dumps(db.getAllDebt(), ensure_ascii=False)
+	data = db.getAllDebt()
+	userMap = getUserMap()
+	for elm in data:
+		username = elm["creditor"]
+		elm["creditor"] = {"username":username, "display_name":userMap[username]}
+    data = json.dumps(data, ensure_ascii=False)
     return Response(data, status=200)
 
 
 @app.route("/list/<username>", methods=["get"])
 def getAllRelated(username):
-    data = json.dumps(db.getAllRelated(username), ensure_ascii=False)
+	data = db.getAllRelated(username)
+	userMap = getUserMap()
+	for elm in data:
+		username = elm["creditor"]
+		elm["creditor"] = {"username":username, "display_name":userMap[username]}
+    data = json.dumps(data, ensure_ascii=False)
     return Response(data, status=200)
 
 
