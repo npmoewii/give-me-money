@@ -6,10 +6,10 @@ sudo API_USER=http://localhost:5000/ yarn start
 
 ## Docker 
 ```
-docker run -itd \
-    -e API_USER=http://localhost:7000 \
-    -e API_DEBT=http://localhost:7001 \
-    -e API_TRANSACTION=http://localhost:7002 \
+docker run -itd --name gmm-frontend \
+    -e API_USER=http://localhost:7000/ \
+    -e API_DEBT=http://localhost:7001/ \
+    -e API_TRANSACTION=http://localhost:7002/ \
     -p 80:80 \
     npmoewii/gmm-frontend
 ```
