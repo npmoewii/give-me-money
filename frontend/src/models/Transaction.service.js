@@ -2,7 +2,7 @@
 import axios from 'axios'
 
 const transactionAPI = axios.create({
-    baseURL: 'http://localhost:7002/',
+    baseURL: process.env.REACT_APP_API_TRANSACTION || 'http://localhost:7002/',
     withCredentials: false,
     headers: {
         "Access-Control-Allow-Origin": "*",
