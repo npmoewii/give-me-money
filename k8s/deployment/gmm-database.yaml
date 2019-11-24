@@ -18,6 +18,6 @@ spec:
         - name: gmm-database
           image: npmoewii/gmm-database
           ports:
-            - containerPort: 80
+            - containerPort: 3306
           args:
             ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
