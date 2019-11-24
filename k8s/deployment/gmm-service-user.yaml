@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gmm-service-user-deployment
+  labels:
+    app: gmm-service-user
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gmm-service-user
+  template:
+    metadata:
+      labels:
+        app: gmm-service-user
+    spec:
+      containers:
+        - name: nginx
+          image: npmoewii/gmm-service-user
+          ports:
+            - containerPort: 7000
