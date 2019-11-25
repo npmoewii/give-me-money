@@ -16,13 +16,13 @@ spec:
     spec:
       containers:
         - name: gmm-frontend
-          image: npmoewii/gmm-frontend
+          image: npmoewii/gmm-frontend:rpi
           ports:
             - containerPort: 80
           env:
             - name: API_USER
-              value: 'http://localhost:7000/'
+              value: "http://localhost:7000/"
             - name: API_DEBT
-              value: 'http://localhost:7001/'
+              value: "http://localhost:7001/"
             - name: API_TRANSACTION
-              value: 'http://localhost:7002/'
+              value: "http://localhost:7002/"

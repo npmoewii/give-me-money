@@ -16,19 +16,19 @@ spec:
     spec:
       containers:
         - name: gmm-service-user
-          image: npmoewii/gmm-service-user
+          image: npmoewii/gmm-service-user:rpi
           ports:
             - containerPort: 7000
           env:
             - name: DB_HOST
-              value: '127.0.0.1'
+              value: "127.0.0.1"
             - name: DB_PORT
-              value: '3306'
+              value: "3306"
             - name: DB_USERNAME
-              value: 'gmm_user'
+              value: "gmm_user"
             - name: DB_PASSWORD
-              value: 'gmm_user_password'
+              value: "gmm_user_password"
             - name: DB_NAME
-              value: 'gmm_user'
+              value: "gmm_user"
             - name: DEBT_PORT
-              value: '7000'
+              value: "7000"

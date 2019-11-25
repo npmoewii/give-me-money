@@ -16,21 +16,21 @@ spec:
     spec:
       containers:
         - name: gmm-service-transaction
-          image: npmoewii/gmm-service-transaction
+          image: npmoewii/gmm-service-transaction:rpi
           ports:
             - containerPort: 7002
           env:
             - name: DB_HOST
-              value: '127.0.0.1'
+              value: "127.0.0.1"
             - name: DB_PORT
-              value: '3306'
+              value: "3306"
             - name: DB_USERNAME
-              value: 'gmm_transaction'
+              value: "gmm_transaction"
             - name: DB_PASSWORD
-              value: 'gmm_transaction_password'
+              value: "gmm_transaction_password"
             - name: DB_NAME
-              value: 'gmm_transaction'
+              value: "gmm_transaction"
             - name: DEBT_PORT
-              value: '7002'
+              value: "7002"
             - name: USER_BASE_ADDRESS
-              value: 'http://localhost:7000/'
+              value: "http://localhost:7000/"

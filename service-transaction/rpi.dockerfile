@@ -1,4 +1,4 @@
-FROM python:3.8.0-slim-buster
+FROM arm32v7/python:3.8.0-slim-buster
 
 COPY . /app
 WORKDIR /app
