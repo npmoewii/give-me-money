@@ -16,20 +16,20 @@ spec:
     spec:
       containers:
         - name: gmm-service-debt
-          image: npmoewii/gmm-service-debt
+          image: npmoewii/gmm-service-debt:rpi
           ports:
             - containerPort: 7001
           env:
             - name: DB_HOST
-              value: '127.0.0.1'
+              value: '192.168.0.100'
             - name: DB_PORT
               value: '3306'
             - name: DB_USERNAME
-              value: 'gmm_transaction'
+              value: 'gmm_debt'
             - name: DB_PASSWORD
-              value: 'gmm_transaction_password'
+              value: 'gmm_debt_password'
             - name: DB_NAME
-              value: 'gmm_transaction'
+              value: 'gmm_debt'
             - name: DEBT_PORT
               value: '7001'
             - name: USER_BASE_ADDRESS

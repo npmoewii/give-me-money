@@ -16,13 +16,13 @@ spec:
     spec:
       containers:
         - name: gmm-frontend
-          image: npmoewii/gmm-frontend
+          image: npmoewii/gmm-frontend:rpi
           ports:
             - containerPort: 80
           env:
             - name: API_USER
-              value: 'http://192.168.0.100/api/user'
+              value: 'http://192.168.0.100/api/user/'
             - name: API_DEBT
-              value: 'http://192.168.0.100/api/debt'
+              value: 'http://192.168.0.100/api/debt/'
             - name: API_TRANSACTION
-              value: 'http://192.168.0.100/api/transaction'
+              value: 'http://192.168.0.100/api/transaction/'

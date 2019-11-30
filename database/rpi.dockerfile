@@ -1,4 +1,5 @@
-FROM mysql:latest
+# FROM mysql:latest
+FROM jsurf/rpi-mariadb:latest
 
 ENV MYSQL_ROOT_PASSWORD 1234
 

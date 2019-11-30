@@ -16,12 +16,12 @@ spec:
     spec:
       containers:
         - name: gmm-service-transaction
-          image: npmoewii/gmm-service-transaction
+          image: npmoewii/gmm-service-transaction:rpi
           ports:
             - containerPort: 7002
           env:
             - name: DB_HOST
-              value: '127.0.0.1'
+              value: '192.168.0.100'
             - name: DB_PORT
               value: '3306'
             - name: DB_USERNAME
