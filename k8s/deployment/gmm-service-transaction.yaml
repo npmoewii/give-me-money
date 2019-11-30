@@ -34,3 +34,12 @@ spec:
               value: '7002'
             - name: USER_BASE_ADDRESS
               value: 'http://192.168.0.100/api/user'
+      tolerations:
+        - key: 'node.kubernetes.io/unreachable'
+          operator: 'Exists'
+          effect: 'NoExecute'
+          tolerationSeconds: 10
+        - key: 'node.kubernetes.io/not-ready'
+          operator: 'Exists'
+          effect: 'NoExecute'
+          tolerationSeconds: 10
