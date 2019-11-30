@@ -30,7 +30,7 @@ spec:
               value: 'gmm_transaction_password'
             - name: DB_NAME
               value: 'gmm_transaction'
-            - name: DEBT_PORT
+            - name: TRANSACTION_PORT
               value: '7002'
             - name: USER_BASE_ADDRESS
-              value: 'http://localhost:7000/'
+              value: 'http://192.168.0.100/api/user'

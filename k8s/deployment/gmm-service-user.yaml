@@ -20,15 +20,15 @@ spec:
           ports:
             - containerPort: 7000
           env:
-            - name: DB_HOST
+            - name: MYSQL_HOST
               value: '127.0.0.1'
-            - name: DB_PORT
+            - name: MYSQL_PORT
               value: '3306'
-            - name: DB_USERNAME
+            - name: MYSQL_USER
               value: 'gmm_user'
-            - name: DB_PASSWORD
+            - name: MYSQL_PASSWORD
               value: 'gmm_user_password'
-            - name: DB_NAME
+            - name: MYSQL_DATABASE
               value: 'gmm_user'
-            - name: DEBT_PORT
+            - name: PORT
               value: '7000'

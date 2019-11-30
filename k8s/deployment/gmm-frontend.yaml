@@ -21,8 +21,8 @@ spec:
             - containerPort: 80
           env:
             - name: API_USER
-              value: 'http://localhost:7000/'
+              value: 'http://192.168.0.100/api/user'
             - name: API_DEBT
-              value: 'http://localhost:7001/'
+              value: 'http://192.168.0.100/api/debt'
             - name: API_TRANSACTION
-              value: 'http://localhost:7002/'
+              value: 'http://192.168.0.100/api/transaction'

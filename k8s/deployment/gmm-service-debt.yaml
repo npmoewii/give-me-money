@@ -33,4 +33,4 @@ spec:
             - name: DEBT_PORT
               value: '7001'
             - name: USER_BASE_ADDRESS
-              value: 'http://localhost:7000/'
+              value: 'http://192.168.0.100/api/user'
