@@ -1,5 +1,15 @@
 # Give Me Money
 
+## Build
+- Build image and Create the container 
+```
+docker-compose up -d --build
+```
+- Stop and Remove the container
+```
+docker-compose down
+```
+
 
 ## Rasberry PI set-up
 ### WorkerNode (Raspberry PI)

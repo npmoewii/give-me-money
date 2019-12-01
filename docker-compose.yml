@@ -1,0 +1,70 @@
+version: "3"
+services:
+  gmm-database:
+    build: ./database
+    container_name: database
+
+  gmm-service-user:
+    build: ./service-user
+    container_name: service-user
+    depends_on:
+      - gmm-database
+    ports:
+      - "7000:7000"
+    environment:
+      - PORT=7000
+      - MYSQL_HOST=gmm-database
+      - MYSQl_PORT=3306
+      - MYSQL_USER=gmm_user
+      - MYSQL_PASSWORD=gmm_user_password
+      - MYSQL_DATABASE=gmm_user
+
+  gmm-service-debt:
+    build: ./service-debt
+    container_name: service-debt
+    depends_on:
+      - gmm-database
+      - gmm-service-user
+    ports:
+      - "7001:7001"
+    environment:
+      - DEBT_PORT=7001
+      - DB_HOST=gmm-database
+      - DB_PORT=3306
+      - DB_USERNAME=gmm_debt
+      - DB_PASSWORD=gmm_debt_password
+      - DB_NAME=gmm_debt
+      - USER_BASE_ADDRESS=http://gmm-service-user:7000
+
+  gmm-service-transaction:
+    build: ./service-transaction
+    container_name: service-transaction
+    depends_on:
+      - gmm-database
+      - gmm-service-user
+    ports:
+      - "7002:7002"
+    environment:
+      - TRANSACTION_PORT=7002
+      - DB_HOST=gmm-database
+      - DB_PORT=3306
+      - DB_USERNAME=gmm_transaction
+      - DB_PASSWORD=gmm_transaction_password
+      - DB_NAME=gmm_transaction
+      - USER_BASE_ADDRESS=http://gmm-service-user:7000
+
+  gmm-frontend:
+    build: ./frontend
+    container_name: frontend
+    expose:
+      - "80"
+    ports:
+      - "80:80"
+    depends_on:
+      - gmm-service-user
+      - gmm-service-debt
+      - gmm-service-transaction
+    environment:
+      - API_USER=http://localhost:7000/
+      - API_DEBT=http://localhost:7001/
+      - API_TRANSACTION=http://localhost:7002/
