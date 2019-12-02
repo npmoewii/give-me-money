@@ -65,6 +65,15 @@ sudo update-alternatives --set ebtables /usr/sbin/ebtables-legacy
 
 ### Set up Master Node
 
+We create multi-master using 2 VMs with stacked etcd-control plane strategy. The chosen linux distribution for master nodes is Debian 10 (Buster) as of Raspbian Buster was used in our Raspberry Pi nodes.
+
+#### Install Debian for all master node
+
+1. Download Debian 10 iso from [here](https://www.debian.org/CD/).
+2. Install Debian on VirtualBox with 2GB of RAM or higher.
+3. Configure VM to use bridged adapter as shown in the picture below.
+![Alt text](image/setup-master/bridge-adapter.png?raw=true "Set network adapter type to bridged adapter")
+
 ### Set up Load Balancer for master - HAProxy
 
 ### Set up Load Balancer for client - nginx
@@ -86,3 +95,4 @@ sudo systemctl restart nginx
 ```
 
 ## Deploy the application to Kubernetes cluster
+
