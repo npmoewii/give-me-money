@@ -32,7 +32,7 @@ docker-compose down
 ## Topology
 Kubenetes cluster topology
 
-![Alt text](image/topology.jpg?raw=true "Kubernetes cluster topology image")
+![Alt text](image/topology.png?raw=true "Kubernetes cluster topology image")
 
 | Device                                   |             IP Address             |
 | ---------------------------------------- | :--------------------------------: |
