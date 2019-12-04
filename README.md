@@ -50,7 +50,7 @@ Set up process can be followed in [this medium article](https://medium.com/nycde
 
 For Raspbian 10 (Debian 10)
 
-- Swap needs to be disabled for kubeadm to run correctly.
+- Swap needs to be disabled for kubeadm to run correctly. After running the below script, you need to reboot your rasberry pi for applying the change. To check your swap area using `free -h`
 
 ```sh
 sudo swapoff -a
@@ -253,3 +253,5 @@ sudo systemctl restart nginx
 ```sh
 ./deploy.sh
 ```
+
+
