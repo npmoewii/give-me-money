@@ -14,33 +14,33 @@
     - Get, Create the debt list
     - Using `gmm_debt` database
   - transaction 
-    - Get, Create the transaction for paying debt
+    - Get, Create the transaction for paying debts
     - Using `gmm_transaction` database
 
 ## Build
-For testing in local
-- Build image and Create the container 
+For `amd64` architecture
+- Build images and Create containers
 ```sh
 docker-compose up -d --build
 ```
-- Open the browser with docker ip. For example, `172.17.0.1` or `localhost`
+- Open the browser with docker IP or localhost (Depends on your platform). For example, `172.17.0.1` or `localhost`
 - Stop and Remove the container
 ```sh
 docker-compose down
 ```
 
 ## Topology
-Kubenetes cluster topology
+Kubernetes cluster topology
 
 ![Alt text](image/topology.png?raw=true "Kubernetes cluster topology image")
 
-|                  Device                  |        Host name        |  IP Address   |
-| ---------------------------------------- | ----------------------- | ------------- |
-| Master 1 [VM]                            |  kubernetes-master-0    | 192.168.0.254 |
-| Master 2 [VM]                            |  kubernetes-master-1    | 192.168.0.253 |
-| Load Balancer for Master [VM] - HAProxy  |  load-balancer-1        | 192.168.0.200 |
-| Load Balancer for Client [VM] - nginx    |  client-load-balancer-1 | 192.168.0.100 |
-| Worker Node [Raspberry PI]               |  any descriptive name   | 192.168.0.136, 192.168.0.142 - 144 |
+| Device                                  | Host name              | IP Address                         |
+| --------------------------------------- | ---------------------- | ---------------------------------- |
+| Master 1 [VM]                           | kubernetes-master-0    | 192.168.0.254                      |
+| Master 2 [VM]                           | kubernetes-master-1    | 192.168.0.253                      |
+| Load Balancer for Master [VM] - HAProxy | load-balancer-1        | 192.168.0.200                      |
+| Load Balancer for Client [VM] - nginx   | client-load-balancer-1 | 192.168.0.100                      |
+| Worker Node [Raspberry PI]              | any descriptive name   | 192.168.0.136, 192.168.0.142 - 144 |
 
 ## Set up Kubernetes cluster
 
@@ -50,14 +50,14 @@ Set up process can be followed in [this medium article](https://medium.com/nycde
 
 For Raspbian 10 (Debian 10)
 
-- Swap need to be disbled for kubeadm to run correctly.
+- Swap needs to be disabled for kubeadm to run correctly.
 
 ```sh
 sudo swapoff -a
 sudo systemctl disable dphys-swapfile.service
 ```
 
-- Since latest kubeadm is not compatible with nftables, we have to change it to use legacy iptables. [See more detail](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#ensure-iptables-tooling-does-not-use-the-nftables-backend)
+- Since the latest kubeadm is not compatible with nftables, we have to change it to use legacy iptables. [See more detail](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#ensure-iptables-tooling-does-not-use-the-nftables-backend)
 
 ```sh
 sudo apt install arptables
@@ -83,7 +83,7 @@ We create multi-master using 2 VMs with stacked etcd-control plane strategy. The
 
 > Important:
 > Ensure that each master VM has different MAC address, product_uuid and hostname
-> (Product uuid can be checked with `sudo cat /sys/class/dmi/id/product_uuid`)
+> (Product UUID can be checked with `sudo cat /sys/class/dmi/id/product_uuid`)
 
 #### Install and setup Docker
 
@@ -155,7 +155,7 @@ We have to set up HAProxy as a load balancer so that it can distribute the contr
 sudo vim /etc/haproxy/haproxy.cfg
 ```
 
-2. Add the following information to the end of the configuration file. You should pay special attention to the host name and IP address of each master node.
+2. Add the following information to the end of the configuration file. You should pay special attention to the hostname and IP address of each master node.
 
 ```
 frontend kubernetes
@@ -222,7 +222,7 @@ sudo kubeadm join 192.168.0.200:6443 --token <your-token> --discovery-token-ca-c
 
 > From now, Your cluster should be now ready to deploy applications!
 
-### Set up Load Balancer for client - nginx
+### Set up Load Balancer for client request - nginx
 1. Choose the VM in the notebook. For the VM, you can use whatever you would like such as Ubuntu or Debian
 2. After selecting the VM in the VirtualBox, Go to `Settings > Network`. At the `Attached to:` in Adapter 1, Select `Bridged Adapter`
 3. Install nginx
