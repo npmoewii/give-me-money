@@ -6,7 +6,7 @@
 ## Project structure
 - database
 - frontend
-- service: Each service has the user for accessing only his database
+- service: Each service has the user for accessing only its database
   - user
     - Get all user information
     - Using `gmm_user` database
@@ -34,13 +34,13 @@ Kubenetes cluster topology
 
 ![Alt text](image/topology.png?raw=true "Kubernetes cluster topology image")
 
-| Device                                   |             IP Address             |
-| ---------------------------------------- | :--------------------------------: |
-| Master 1 [VM]                            |           192.168.0.254            |
-| Master 2 [VM]                            |           192.168.0.253            |
-| Load Balancer for Master [VM] - HA Proxy |           192.168.0.200            |
-| Load Balancer for Client [VM] - nginx    |           192.168.0.100            |
-| Worker Node [Raspberry PI]               | 192.168.0.136, 192.168.0.142 - 144 |
+|                  Device                  |        Host name        |  IP Address   |
+| ---------------------------------------- | ----------------------- | ------------- |
+| Master 1 [VM]                            |  kubernetes-master-0    | 192.168.0.254 |
+| Master 2 [VM]                            |  kubernetes-master-1    | 192.168.0.253 |
+| Load Balancer for Master [VM] - HAProxy  |  load-balancer-1        | 192.168.0.200 |
+| Load Balancer for Client [VM] - nginx    |  client-load-balancer-1 | 192.168.0.100 |
+| Worker Node [Raspberry PI]               |  any descriptive name   | 192.168.0.136, 192.168.0.142 - 144 |
 
 ## Set up Kubernetes cluster
 
@@ -134,6 +134,50 @@ sudo apt-mark hold kubelet kubeadm kubectl
 ```
 
 ### Set up Load Balancer for master - HAProxy
+
+#### Install Debian and basic setup
+
+1. Set up the Debian using [the same process as in master nodes](#install-debian-for-all-master-node)
+2. configuring IP and host name of the load balancer server according to the [topology of this project](#topology)
+3. Set up HAProxy
+
+``` sh
+sudo apt-get update
+sudo apt-get install haproxy
+```
+
+#### Setting up HAProxy
+
+We have to set up HAProxy as a load balancer so that it can distribute the controlling packet to each of the two master nodes in a round robin fashion.
+
+1. Edit the HAProxy configuration file
+``` sh
+sudo vim /etc/haproxy/haproxy.cfg
+```
+
+2. Add the following information to the end of the configuration file. You should pay special attention to the host name and IP address of each master node.
+
+```
+frontend kubernetes
+	bind 192.168.0.200:6443 #The IP address and port used for connecting to the load balancer
+	option tcplog
+	mode tcp
+	default_backend kubernetes-master-nodes
+
+backend kubernetes-master-nodes
+	mode tcp
+	balance roundrobin #Use round robin when selecting the master nodes
+	option tcp-check
+	server kubernetes-master-0 192.168.0.254:6443 check fall 3 rise 2 #The host name and IP address of first master node
+	server kubernetes-master-1 192.168.0.253:6443 check fall 3 rise 2 #The host name and IP address of second master node
+```
+
+3. Restart the HAProxy
+
+``` sh
+sudo systemctl restart haproxy.service
+```
+
 
 ### Initialize cluster
 
